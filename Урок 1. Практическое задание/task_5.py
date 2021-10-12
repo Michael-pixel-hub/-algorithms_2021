@@ -28,3 +28,30 @@
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+
+class StackClass:
+    def __init__(self):
+        self.elements = [[1,2,3,4,5,6]]
+    def is_empty(self):
+        return self.elements == []
+    def push_in(self, el):
+        if len(self.elements[len(self.elements)-1])-1 > 8:
+            self.elements.append([el])
+        else:
+            self.elements[len(self.elements)-1].append(el)
+    def pop_out(self):
+        if len(self.elements[len(self.elements)-1])-1 < 1:
+            return self.elements.pop()
+        else:
+            return self.elements[len(self.elements)-1].pop()
+
+b = StackClass()
+b.push_in(7)
+b.push_in(8)
+b.push_in(9)
+b.push_in(10)
+b.push_in(11)
+b.push_in(12)
+b.pop_out()
+b.pop_out()
+print(b.elements)

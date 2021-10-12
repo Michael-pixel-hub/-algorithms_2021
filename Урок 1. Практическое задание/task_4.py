@@ -25,3 +25,45 @@
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+
+# Способ 1 (сложность О(n))
+
+users = {
+    'Mix': ['123', 1],
+    'Max': ['123', 0]
+} #O(1)
+
+def check(login, password): #О(n)
+    if login in users.keys() and users[login][0] == password and users[login][1] == 1: #О(n)
+        print('Может быть допущен(а) к ресурсу') #O(1)
+    elif login in users.keys() and users[login][0] == password and users[login][1] == 0: #О(n)
+        print("Вы не активировали свою учетную запись. Перейдите на почту и активируйте") #O(1)
+    else: #O(1)
+        print('Не может быть допущен(а) к ресурсу') #O(1)
+if login == i and password == a:
+check('Max', '123')
+
+# Способ 2 (сложность О(n^2))
+
+users = {
+    'Логин, пароль, активация': {'Mix': [123, False], 'Max': [True, False]}
+} #O(1)
+
+def check2(login, password): #О(n^2)
+    a = 0
+    for i in users: #О(n)
+        for j in users[i]: #О(n)
+            if login == j and users[i][j][0] == password and users[i][j][1] == True: #O(1)
+                print('Может быть допущен(а) к ресурсу') #O(1)
+                a = a + 1 #O(1)
+            elif login == j and users[i][j][0] == password and users[i][j][1] == False: #O(1)
+                print("Вы не активировали свою учетную запись. Перейдите на почту и активируйте") #O(1)
+                a = a + 1 #O(1)
+            else: #O(1)
+                if a == 0: #O(1)
+                    print('Не может быть допущен(а) к ресурсу') #O(1)
+                    a = a + 1 #O(1)
+                else: #O(1)
+                    break #O(1)
+check2('Max', 123)
+
