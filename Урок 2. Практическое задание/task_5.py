@@ -21,3 +21,16 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+def ascii_table(beginning_table=32, end_table=127):
+    if beginning_table == end_table:
+        print(f'{beginning_table} - {chr(beginning_table)}')
+        return beginning_table
+    else:
+        if beginning_table % 10 != 1:
+            print(f'{beginning_table} - {chr(beginning_table)}', end=' ')
+        else:
+            print(f'{beginning_table} - {chr(beginning_table)}')
+        return ascii_table(beginning_table + 1)
+
+ascii_table()

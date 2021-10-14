@@ -28,3 +28,76 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+"""
+
+Вариант с циклом
+
+while True:
+    try:
+        list_action = ['+', '-', '*', '/']
+        user_action = input('Введите операцию (+, -, *, / или 0 для выхода):')
+        if user_action == '0':
+            break
+        elif user_action not in list_action:
+            raise Exception ('Несоответсвтующее значение')
+        user_number_one = int(input('Введите первое число:'))
+        user_number_two = int(input('Введите второе число:'))
+        if user_action == '+':
+            answer = user_number_one + user_number_two
+            print(answer)
+        elif user_action == '-':
+            answer = user_number_one - user_number_two
+            print(answer)
+        elif user_action == '*':
+            answer = user_number_one * user_number_two
+            print(answer)
+        elif user_action == '/':
+            answer = user_number_one / user_number_two
+            print(answer)
+    except ZeroDivisionError:
+        print('На 0 делить нельзя') 
+    except ValueError:
+        print('Значение должно быть типа "int"')
+    except Exception:
+        print('Неправильно ввели операцию. Нужно ввести один из вариантов: +, -, *, /')
+        continue
+"""
+# Вариант с рекурсией
+
+def calculator():
+    try:
+        list_action = ['+', '-', '*', '/']
+        user_action = input('Введите операцию (+, -, *, / или 0 для выхода):')
+        # базовый случай
+        if user_action == '0':
+            pass
+        elif user_action not in list_action:
+            raise Exception ('Несоответсвтующее значение')
+        else:
+            user_number_one = int(input('Введите первое число:'))
+            user_number_two = int(input('Введите второе число:'))
+            if user_action == '+':
+                answer = user_number_one + user_number_two
+                print(answer)
+            elif user_action == '-':
+                answer = user_number_one - user_number_two
+                print(answer)
+            elif user_action == '*':
+                answer = user_number_one * user_number_two
+                print(answer)
+            elif user_action == '/':
+                answer = user_number_one / user_number_two
+                print(answer)
+            return calculator()
+    except ZeroDivisionError:
+        print('На 0 делить нельзя')
+        return calculator()
+    except ValueError:
+        print('Значение должно быть типа "int"')
+        return calculator()
+    except Exception:
+        print('Неправильно ввели операцию. Нужно ввести один из вариантов: +, -, *, /')
+        return calculator()
+
+calculator()
