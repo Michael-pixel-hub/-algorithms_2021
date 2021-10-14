@@ -33,7 +33,7 @@ def min_value(list_of_numbers):
             ind_max_number = ind_max_number - 1 #O(1)
     return list_of_numbers[ind_min_number] #O(1)
 
-print(min_value([444,222,3333, 1, 3, 4, 4]))
+print(min_value([444, 222, 3333, 1, 3, 4, 4]))
 
 # сложность O(n) - линейная
 
@@ -44,7 +44,7 @@ def min_value2(list_of_numbers):
             _min = i #O(1)
     return _min #0(1)
 
-print(min_value2([444,222,3333, 1, 3, 4, 4]))
+print(min_value2([444, 222, 3333, 1, 3, 4, 4]))
 
 # сложность O(n^2) - квадратичная
 
@@ -56,4 +56,4 @@ def min_value2(list_of_numbers):
                 _min = j #O(1)
     return _min #0(1)
 
-print(min_value2([444,222,3333, 1, 3, 4, 4]))
+print(min_value2([444, 222, 3333, 1, 3, 4, 4]))

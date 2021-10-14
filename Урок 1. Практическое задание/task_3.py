@@ -21,9 +21,9 @@
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
 
-# 1 способ (сложность О(n^2))
-# Почему сложность О(n^2)? Потому что мы берем ту сложность, которая больше всего влияет на код. Так как у нас цикл
-# в цикле, то сложность О(n^2).
+# 1 способ (сложность О(n^3))
+# Почему сложность О(n^3)? Потому что мы берем ту сложность, которая больше всего влияет на код. Так как у нас цикл
+# в цикле, то сложность О(n^3).
 
 dict_of_companies = {
     "ООО Москва": 10500000,
@@ -38,18 +38,18 @@ list_max = [] #O(1)
 
 for i in list_companies_profits: #O(n)
     _max = 0 #O(1)
-    for b in list_companies_profits:#O(n)
-        if _max < b and b not in list_max: #O(n)
+    for b in list_companies_profits:#O(n^2)
+        if _max < b and b not in list_max: #O(n^3)
             _max = b #O(1)
     list_max.append(_max) #O(1)
-    if len(list_max) == 3: #O(n)
+    if len(list_max) == 3: #O(1)
         break #O(1)
 
 for k,v in dict_of_companies.items(): #O(n)
     if v in list_max: #O(n)
         print(f'Компания {k}, годовая прибыль {v}') #O(1)
 
-# 2 способ (сложность O(n))
+# 2 способ (сложность O(n^2))
 # Почему сложность O(n)? Потому что мы берем ту сложность, которая больше всего влияет на код. Так как у нас
 # нет вложенного цикла с одним неизвестным числом n, то берем O(n).
 
@@ -59,11 +59,11 @@ ind = len(list_companies_profits) #O(1)
 
 while ind > 0: #O(n)
     _max = 0 #O(1)
-    for b in list_companies_profits: #O(n)
+    for b in list_companies_profits: #O(n^2)
         if _max < b and b not in list_max: #O(n)
             _max = b #O(1)
     list_max.append(_max) #O(1)
-    if len(list_max) == 3: #O(n)
+    if len(list_max) == 3: #O(1)
         break #O(1)
     ind = ind - 1 #O(1)
 for k,v in dict_of_companies.items(): #O(n)

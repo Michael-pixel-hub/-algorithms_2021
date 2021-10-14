@@ -42,9 +42,16 @@ class StackClass:
     def pop_out(self):
         if len(self.elements[len(self.elements)-1])-1 < 1:
             return self.elements.pop()
-        else:
-            return self.elements[len(self.elements)-1].pop()
-
+        return self.elements[len(self.elements)-1].pop()
+    def get_val(self):
+        return self.elements[len(self.elements) - 1]
+    def stack_size(self):
+        sum_stack = 0
+        for i in self.elements:
+            sum_stack += len(i)
+        return sum_stack
+    def stack_count(self):
+        return len(self.elements)
 b = StackClass()
 b.push_in(7)
 b.push_in(8)
@@ -52,6 +59,9 @@ b.push_in(9)
 b.push_in(10)
 b.push_in(11)
 b.push_in(12)
-b.pop_out()
+print(b.stack_size())
+print(b.get_val())
+print(b.elements)
+print(b.stack_count())
 b.pop_out()
 print(b.elements)

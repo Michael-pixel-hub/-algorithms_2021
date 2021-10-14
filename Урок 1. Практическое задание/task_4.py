@@ -67,3 +67,21 @@ def check2(login, password): #О(n^2)
                     break #O(1)
 check2('Max', 123)
 
+# Способ 3 (сложность О(1))
+
+users = {
+    'Mix': ['123', 1],
+    'Max': ['123', 0]
+} #O(1)
+
+def check(login, password): #О(1)
+    if users.get(login):
+        if users[login][0] == password and users[login][1] == 1:
+            print('Может быть допущен(а) к ресурсу')
+        elif users[login][0] == password and users[login][1] == 0:
+            print("Вы не активировали свою учетную запись. Перейдите на почту и активируйте")
+        else:
+            print('Не может быть допущен(а) к ресурсу')
+    else:
+        print('Не может быть допущен(а) к ресурсу')
+check('Max', '123')
