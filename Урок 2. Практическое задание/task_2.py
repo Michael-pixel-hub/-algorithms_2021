@@ -18,3 +18,35 @@
 Решите через рекурсию. Решение через цикл не принимается.
 Для оценки Отлично в этом блоке необходимо выполнить 5 заданий из 7
 """
+
+# Вариант с циклом
+
+user_number = input('Введите число:')
+_max = len(user_number)
+even = 0
+odd = 0
+for i in user_number:
+    if int(i) % 2 == 0:
+        even += 1
+    else:
+        odd += 1
+print(f'Четные {even}, нечетные {odd}')
+
+# Вариант с рекурсией
+
+user_number = int(input('Введите число:'))
+
+def numbers_even_odd(user_n, even=0, odd=0):
+    # базовый случай
+    if user_n == 0:
+        return even, odd
+    # шаг рекурсии
+    else:
+        working_number = user_n % 10
+        remaining_numbers = user_n // 10
+        if working_number % 2 == 0:
+            even += 1
+        elif working_number % 2 == 1:
+            odd += 1
+        return numbers_even_odd(remaining_numbers, even, odd)
+print(numbers_even_odd(user_number))
