@@ -18,3 +18,24 @@
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+class StackClass2:
+    def __init__(self):
+        self.tasks = [1,2,3,4,5,6]
+        self.solved = []
+        self.unresolved = []
+    def is_empty(self):
+        return self.elements, self.solved, self.unresolved == []
+    def push_in(self, task):
+        self.tasks.insert(0, task)
+    def push_in_solved(self):
+        self.solved.insert(0, self.tasks.pop())
+    def push_in_unresolved(self):
+        self.unresolved.insert(0, self.tasks.pop())
+
+c = StackClass2()
+c.push_in(7)
+c.push_in_solved()
+c.push_in_unresolved()
+print(c.tasks)
+print(c.solved)
+print(c.unresolved)
