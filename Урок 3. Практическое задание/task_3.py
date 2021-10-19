@@ -21,3 +21,14 @@
 скорость доступа вместе с уникальностью элементов,
 которые даёт множество, сделают решение коротким и эффективным.
 """
+import hashlib
+
+a = set()
+
+for el_1 in range(0, len('papa')+1):
+    for el_2 in range(el_1+1, len('papa')+1):
+        if 'papa'[el_1:el_2] == 'papa':
+            pass
+        else:
+            a.add(hashlib.sha256('papa'[el_1:el_2].encode()).hexdigest())
+print(a)
