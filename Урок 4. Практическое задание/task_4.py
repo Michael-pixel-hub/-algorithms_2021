@@ -12,8 +12,9 @@
 Без аналитики задание считается не принятым!
 """
 
-array = [1, 3, 1, 3, 4, 5, 1]
+import timeit
 
+array = [1, 3, 1, 3, 4, 5, 1]
 
 def func_1():
     m = 0
@@ -26,7 +27,6 @@ def func_1():
     return f'Чаще всего встречается число {num}, ' \
            f'оно появилось в массиве {m} раз(а)'
 
-
 def func_2():
     new_array = []
     for el in array:
@@ -38,6 +38,24 @@ def func_2():
     return f'Чаще всего встречается число {elem}, ' \
            f'оно появилось в массиве {max_2} раз(а)'
 
+def func_3():
+    a = max(array, key=array.count)
+    return f'Чаще всего встречается число {a}, ' \
+           f'оно появилось в массиве {array.count(a)} раз(а)'
 
 print(func_1())
 print(func_2())
+print(func_3())
+
+print(timeit.timeit(stmt="func_1()", setup="from __main__ import func_1",  number=10000))
+print(timeit.timeit(stmt="func_2()", setup="from __main__ import func_2",  number=10000))
+print(timeit.timeit(stmt="func_3()", setup="from __main__ import func_3",  number=10000))
+
+"""
+До оптимизации скорость алгоритмов была: 
+- у первой функции 0.0255224
+- у второй функции 025777800000000003
+
+После оптимизации алгоритмов скорость увеличилась. Она стала 0.020401600000000006. Этого получилось добиться,
+используя только функцию max
+"""

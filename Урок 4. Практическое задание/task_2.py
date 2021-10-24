@@ -11,37 +11,35 @@
 Будьте внимательны, задание хитрое. Не все так просто, как кажется.
 """
 
-from timeit import timeit
-from random import randint
-
+import random, timeit
 
 def recursive_reverse(number):
     if number == 0:
         return ''
     return f'{str(number % 10)}{recursive_reverse(number // 10)}'
 
+print(recursive_reverse(10000))
 
-num_100 = randint(10000, 1000000)
-num_1000 = randint(1000000, 10000000)
-num_10000 = randint(100000000, 10000000000000)
+num_100 = random.randint(10000, 1000000)
+num_1000 = random.randint(1000000, 10000000)
+num_10000 = random.randint(100000000, 10000000000000)
 
 print('Не оптимизированная функция recursive_reverse')
 print(
-    timeit(
+    timeit.timeit(
         "recursive_reverse(num_100)",
         setup='from __main__ import recursive_reverse, num_100',
         number=10000))
 print(
-    timeit(
+    timeit.timeit(
         "recursive_reverse(num_1000)",
         setup='from __main__ import recursive_reverse, num_1000',
         number=10000))
 print(
-    timeit(
+    timeit.timeit(
         "recursive_reverse(num_10000)",
         setup='from __main__ import recursive_reverse, num_10000',
         number=10000))
-
 
 def memoize(f):
     cache = {}
@@ -65,17 +63,22 @@ def recursive_reverse_mem(number):
 
 print('Оптимизированная функция recursive_reverse_mem')
 print(
-    timeit(
+    timeit.timeit(
         'recursive_reverse_mem(num_100)',
         setup='from __main__ import recursive_reverse_mem, num_100',
         number=10000))
 print(
-    timeit(
+    timeit.timeit(
         'recursive_reverse_mem(num_1000)',
         setup='from __main__ import recursive_reverse_mem, num_1000',
         number=10000))
 print(
-    timeit(
+    timeit.timeit(
         'recursive_reverse_mem(num_10000)',
         setup='from __main__ import recursive_reverse_mem, num_10000',
         number=10000))
+
+"""
+Скорость работы 2 функции выше, чем первой. Цифры не верные и мемоизация сдесь не нужна. 
+Во второй функции timeit, возможно, не видит некоторые действия функции из-за использования декоратора мемоизации
+"""

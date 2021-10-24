@@ -14,6 +14,7 @@
 Без аналитики задание считается не принятым
 """
 
+import timeit, cProfile
 
 def revers_1(enter_num, revers_num=0):
     if enter_num == 0:
@@ -37,3 +38,24 @@ def revers_3(enter_num):
     enter_num = str(enter_num)
     revers_num = enter_num[::-1]
     return revers_num
+
+
+def revers_4(enter_num):
+    a = [enter_num[el-1] for el in range(len(enter_num))]
+    return ''.join(a)
+
+print(revers_4('1010'))
+
+print(timeit.timeit(stmt="revers_1(2,20)", setup="from __main__ import revers_1",  number=10000))
+print(timeit.timeit(stmt="revers_2(2,20)", setup="from __main__ import revers_2",  number=10000))
+print(timeit.timeit(stmt="revers_3(20)", setup="from __main__ import revers_3",  number=10000))
+print(timeit.timeit(stmt="revers_4('20')", setup="from __main__ import revers_4",  number=10000), '\n')
+
+cProfile.run('revers_1(2,20)')
+cProfile.run("revers_2(2,20)")
+cProfile.run("revers_3(20)")
+cProfile.run("revers_4('20')")
+
+"""
+Эффективнее revers_2 и revers_3, так как используют по 4 функции, остальные 5 и больше
+"""
