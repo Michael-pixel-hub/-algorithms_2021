@@ -23,12 +23,18 @@
 """
 import hashlib
 
-a = set()
+hash_substrings = set()
+substrings = set()
 
 for el_1 in range(0, len('papa')+1):
     for el_2 in range(el_1+1, len('papa')+1):
         if 'papa'[el_1:el_2] == 'papa':
             pass
         else:
-            a.add(hashlib.sha256('papa'[el_1:el_2].encode()).hexdigest())
-print(a)
+            hash_substrings.add(hashlib.sha256('papa'[el_1:el_2].encode()).hexdigest())
+            substrings.add('papa'[el_1:el_2])
+
+print(f'papa - {len(hash_substrings)} уникальных подстрок \n')
+
+for i in substrings:
+    print(i)

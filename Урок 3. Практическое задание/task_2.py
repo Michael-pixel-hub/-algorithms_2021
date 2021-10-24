@@ -23,14 +23,18 @@
 
 import hashlib, uuid
 
-passwd_user = input('Введите пароль: ')
+def user_hash(salt_f, text):
+    a = input(text)
+    b = hashlib.sha256(salt_f.encode() + a.encode()).hexdigest()
+    return b
+
 salt = uuid.uuid4().hex
 
 with open('hash.txt', 'w', encoding='utf-8') as file:
-    file.write(hashlib.sha256(salt.encode() + passwd_user.encode()).hexdigest())
+    file.write(user_hash(salt, 'Введите пароль: '))
 
-passwd_user_check = input('Введите пароль еще раз для проверки: ')
-passwd_hash_check = hashlib.sha256(salt.encode() + passwd_user_check.encode()).hexdigest()
+passwd_hash_check = user_hash(salt, 'Введите пароль еще раз для проверки: ')
+
 open_file = open('hash.txt', 'r', encoding='utf-8')
 
 for i in open_file:
