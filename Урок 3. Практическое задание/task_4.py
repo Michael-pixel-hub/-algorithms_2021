@@ -15,3 +15,13 @@ url : хеш-url
 
 Задание творческое. Здесь нет жестких требований к выполнению.
 """
+import hashlib, uuid
+
+dictionary_cash = {}
+
+def checking_cache(url):
+    url_hash = hashlib.sha256(uuid.uuid4().hex.encode() + url.encode()).hexdigest()
+    dictionary_cash.setdefault(url, url_hash)
+    return url_hash
+
+print(checking_cache('https://developer.mozilla.org'))
