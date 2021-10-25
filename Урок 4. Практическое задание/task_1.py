@@ -16,6 +16,7 @@
 на самом деле к генераторам отношения не имеет. Это называется "списковое включение" - list comprehension.
 """
 
+import timeit
 
 def func_1(nums):
     new_arr = []
@@ -23,3 +24,22 @@ def func_1(nums):
         if nums[i] % 2 == 0:
             new_arr.append(i)
     return new_arr
+
+print(timeit.timeit(stmt="func_1([1,2,3])", setup="from __main__ import func_1",  number=10000))
+
+"""
+Скорость 0.015165299999999996. Следующая функция будет оптимизирована "списковым включением"
+"""
+
+def func_2(nums_2):
+    new_arr_2 = [el for el in range(len(nums_2)) if nums_2[el] % 2 == 0]
+    return new_arr_2
+
+a = func_2([1,2,3,4,5,6,7,8])
+
+print(a[0])
+print(timeit.timeit(stmt="func_2([1,2,3])", setup="from __main__ import func_2",  number=10000))
+
+"""
+Скорость 0.009961700000000004. Списковое включение оказалось быстрее, так как не используем метод append"
+"""
