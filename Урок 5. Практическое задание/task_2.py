@@ -34,3 +34,32 @@ hx = HexNumber
 hx + hx
 hex()
 """
+
+from collections import defaultdict
+from functools import reduce
+
+# a = 'A2'
+# b = 'C4F'
+# c = ['C4F', 'A2']
+# e = int(a, 16) + int(b, 16)
+# print(e)
+
+list_calculator = defaultdict(list)
+
+number_1 = input('Введите первое число: ')
+for i in number_1:
+    list_calculator[1].append(i)
+
+number_2 = input('Введите второе число: ')
+for i in number_2:
+    list_calculator[2].append(i)
+
+list_calculator_join = ''.join(list_calculator[1]), ''.join(list_calculator[2])
+sum_all = format(reduce(lambda x,y: int(x, 16) + int(y, 16), list_calculator_join), 'X')
+for i in sum_all:
+    list_calculator['sum_all'].append(i)
+composition_all = format(reduce(lambda x,y: int(x, 16) * int(y, 16), list_calculator_join), 'X')
+for i in composition_all:
+    list_calculator['composition_all'].append(i)
+
+print(list_calculator)
