@@ -40,3 +40,55 @@ for i in
 
 
 """
+import random, timeit
+from statistics import median
+
+# Вариант 1
+
+m = int(input('Введите параметр "m": '))
+list_m = []
+for i in range(2 * m + 1):
+    list_m.append(random.randint(0, 10))
+
+def func_1():
+    i = 0
+    ind = 0
+    while i != len(list_m)-1:
+        if list_m[i] <= list_m[i+1]:
+            i, ind = ind, ind + 1
+        else:
+            list_m[i], list_m[i+1] = list_m[i+1], list_m[i]
+            i -= 1
+            if i < 0:
+                i, ind = ind, ind + 1
+    return list_m[m]
+
+# Вариант 2
+
+m = int(input('Введите параметр "m": '))
+list_m = []
+for i in range(2 * m + 1):
+    list_m.append(random.randint(0, 10))
+
+def func_2():
+    i = len(list_m) // 2
+    while i != 0:
+        ind = list_m.index(max(list_m))
+        list_m.pop(ind)
+        i -= 1
+    return max(list_m)
+
+# Варинат 3
+
+m = int(input('Введите параметр "m": '))
+list_m = []
+for i in range(2 * m + 1):
+    list_m.append(random.randint(0, 10))
+
+def func_3():
+    med = median(list_m)
+    return med
+
+print(timeit.timeit(stmt="func_1()", setup="from __main__ import func_1",  number=10000))
+print(timeit.timeit(stmt="func_2()", globals=globals(),  number=10000))
+print(timeit.timeit(stmt="func_3()", setup="from __main__ import func_3",  number=10000))
